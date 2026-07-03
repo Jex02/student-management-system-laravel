@@ -27,11 +27,11 @@
 
             <div class="navbar-nav ms-auto">
 
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="{{ route('home') }}">
                     Home
                 </a>
 
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('students.index') }}">
                     Students
                 </a>
 
@@ -93,9 +93,9 @@
                             Browse all registered students.
                         </p>
 
-                        <button class="btn btn-primary w-100">
+                        <a href="{{ route('students.index') }}" class="btn btn-primary w-100">
                             Open
-                        </button>
+                        </a>
 
                     </div>
 
