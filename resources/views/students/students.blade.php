@@ -2,86 +2,136 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student List</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 
 <body class="bg-light">
 
 <div class="container mt-5">
+    
+    <!-- Success Message -->
+    @if(session('success'))
 
-    <h1 class="mb-4">
-        Student List
-    </h1>
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+
+            <strong>Success!</strong>
+            {{ session('success') }}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    @endif
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+                <h1 class="mb-0">Student List</h1>
+                <small class="text-muted">Manage all registered students.</small>
+            </div>
+
+            <div>
+
+                <a href="{{ route('home') }}" class="btn btn-secondary me-2">
+                    <i class="bi bi-house-fill"></i> Home
+                </a>
+
+                <a href="{{ route('students.create') }}" class="btn btn-success">
+                    <i class="bi bi-person-plus-fill"></i> Add Student
+                </a>
+
+            </div>
+
+        </div>
 
     <div class="card shadow">
 
         <div class="card-body">
-            <table class="table table-striped table-hover">
 
-    <thead class="table-dark">
+            <table class="table table-hover align-middle mb-0"> 
+                <thead class="table-dark">
 
-        <tr>
+                    <tr>
 
-            <th>ID</th>
+                        <th>ID</th>
 
-            <th>Name</th>
+                        <th>Name</th>
 
-            <th>Age</th>
+                        <th>Age</th>
 
-            <th>Course</th>
+                        <th>Course</th>
 
-            <th>Email</th>
+                        <th>Email</th>
 
-        </tr>
+                        <th>Actions</th>
 
-    </thead>
+                    </tr>
 
-    <tbody>
+                </thead>
 
-        @forelse ($students as $student)
+                <tbody>
 
-            <tr>
+                    @forelse ($students as $student)
 
-                <td>{{ $student->id }}</td>
+                        <tr>
 
-                <td>{{ $student->name }}</td>
+                            <td>{{ $student->id }}</td>
 
-                <td>{{ $student->age }}</td>
+                            <td>{{ $student->name }}</td>
 
-                <td>{{ $student->course }}</td>
+                            <td>{{ $student->age }}</td>
 
-                <td>{{ $student->email }}</td>
+                            <td>{{ $student->course }}</td>
 
-            </tr>
+                            <td>{{ $student->email }}</td>
 
-        @empty
+                            <td>
+                                <a href="{{ route('students.edit', $student) }}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                            </td>
 
-            <tr>
+                        </tr>
 
-                <td colspan="5" class="text-center">
+                    @empty
 
-                    No students found.
+                        <tr>
 
-                </td>
+                            <td colspan="6" class="text-center">
 
-            </tr>
+                                No students found.
 
-        @endforelse
+                            </td>
 
-    </tbody>
+                        </tr>
 
-</table>
+                    @endforelse
+
+                </tbody>
+
+            </table>
 
         </div>
 
     </div>
 
 </div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

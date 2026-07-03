@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Add Student</title>
+    <title>Edit Student</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
+
 <body class="bg-light">
 
 <div class="container mt-5">
 
     <div class="card shadow">
 
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-warning text-dark">
 
-            <h3>Add Student</h3>
+            <h3>
+                <i class="bi bi-pencil-square"></i>
+                Edit Student
+            </h3>
 
         </div>
 
@@ -42,9 +51,10 @@
 
             @endif
 
-            <form action="{{ route('students.store') }}" method="POST">
+            <form action="{{ route('students.update', $student) }}" method="POST">
 
                 @csrf
+                @method('PUT')
 
                 <div class="mb-3">
 
@@ -54,7 +64,7 @@
                         type="text"
                         name="name"
                         class="form-control"
-                        value="{{ old('name') }}">
+                        value="{{ old('name', $student->name) }}">
 
                 </div>
 
@@ -66,7 +76,7 @@
                         type="number"
                         name="age"
                         class="form-control"
-                        value="{{ old('age') }}">
+                        value="{{ old('age', $student->age) }}">
 
                 </div>
 
@@ -78,7 +88,7 @@
                         type="text"
                         name="course"
                         class="form-control"
-                        value="{{ old('course') }}">
+                        value="{{ old('course', $student->course) }}">
 
                 </div>
 
@@ -90,22 +100,17 @@
                         type="email"
                         name="email"
                         class="form-control"
-                        value="{{ old('email') }}">
+                        value="{{ old('email', $student->email) }}">
 
                 </div>
 
-                <button class="btn btn-success">
-
-                    Save Student
-
+                <button class="btn btn-warning">
+                    <i class="bi bi-save"></i>
+                    Update Student
                 </button>
 
-                <a href="{{ route('home') }}" class="btn btn-secondary">
-                        <i class="bi bi-house-fill"></i> Home
-                    </a>
-
-                    <a href="{{ route('students.index') }}" class="btn btn-primary">
-                        <i class="bi bi-list-ul"></i> Student List
+                <a href="{{ route('students.index') }}" class="btn btn-secondary">
+                    Back
                 </a>
 
             </form>
@@ -116,5 +121,8 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

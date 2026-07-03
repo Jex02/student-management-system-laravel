@@ -39,4 +39,25 @@ class StudentController extends Controller
             ->route('students.index')
             ->with('success', 'Student added successfully!');
     }
+    
+        public function edit(Student $student)
+    {
+        return view('students.edit', compact('student'));
+    }
+
+    public function update(Request $request, Student $student)
+    {
+        $validated = $request->validate([
+            'name'   => 'required|min:3',
+            'age'    => 'required|integer|min:1|max:100',
+            'course' => 'required',
+            'email'  => 'required|email|unique:students,email,' . $student->id,
+        ]);
+
+        $student->update($validated);
+
+        return redirect()
+            ->route('students.index')
+            ->with('success', 'Student updated successfully!');
+    }
 }
