@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>View Students</title>
+    <title>Student List</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -21,10 +21,61 @@
     <div class="card shadow">
 
         <div class="card-body">
+            <table class="table table-striped table-hover">
 
-            <p class="text-muted">
-                Student records will appear here.
-            </p>
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Name</th>
+
+            <th>Age</th>
+
+            <th>Course</th>
+
+            <th>Email</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @forelse ($students as $student)
+
+            <tr>
+
+                <td>{{ $student->id }}</td>
+
+                <td>{{ $student->name }}</td>
+
+                <td>{{ $student->age }}</td>
+
+                <td>{{ $student->course }}</td>
+
+                <td>{{ $student->email }}</td>
+
+            </tr>
+
+        @empty
+
+            <tr>
+
+                <td colspan="5" class="text-center">
+
+                    No students found.
+
+                </td>
+
+            </tr>
+
+        @endforelse
+
+    </tbody>
+
+</table>
 
         </div>
 
