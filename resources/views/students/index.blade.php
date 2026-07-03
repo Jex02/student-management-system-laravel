@@ -35,7 +35,7 @@
                     Students
                 </a>
 
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('students.create') }}">
                     Add Student
                 </a>
 
@@ -121,9 +121,9 @@
                             Register a new student.
                         </p>
 
-                        <button class="btn btn-success w-100">
+                        <a href="{{ route('students.create') }}" class="btn btn-success w-100">
                             Open
-                        </button>
+                        </a>
 
                     </div>
 
