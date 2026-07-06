@@ -99,11 +99,24 @@
                             <td>{{ $student->email }}</td>
 
                             <td>
-                                <a href="{{ route('students.edit', $student) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('students.edit', $student) }}" class="btn btn-warning btn-sm me-1">
                                     <i class="bi bi-pencil-square"></i> Edit
                                 </a>
-                            </td>
 
+                                <form action="{{ route('students.destroy', $student) }}" method="POST" class="d-inline">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this student?')">
+
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
 
                     @empty
